@@ -1,0 +1,9 @@
+# ignore idea folder
+.idea
+*.iml
+
+# ignore maven folder
+.mvn
+
+# ignore target folder
+target
