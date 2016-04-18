@@ -2,9 +2,33 @@ plugins {
     id "com.moowork.node" version "0.12"
 }
 
+apply plugin: 'base'
+
 version '0.0.1'
+
+buildDir = 'dist'
+
+node {
+    version = '5.2.0'
+    npmVersion = '3.3.12'
+    download = true
+}
+
+task copyBuild(type: Copy) {
+    from('build')
+    into('../src/main/resources/templates/build')
+}
+
+task copyFrontend(type: Copy) {
+    from('index.html')
+    into('../src/main/resources/templates')
+}
 
 task bundle(type: NpmTask) {
     args = ['run', 'bundle']
 }
+
 bundle.dependsOn(npmInstall)
+copyBuild.dependsOn(bundle)
+copyFrontend.dependsOn(copyBuild)
+assemble.dependsOn(copyFrontend)
