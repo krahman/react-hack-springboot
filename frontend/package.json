@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "bundle": "webpack -p --optimize-dedupe",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "khal",
